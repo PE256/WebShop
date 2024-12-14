@@ -1,0 +1,54 @@
+﻿.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.autorization-block {
+    float: none;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.switch-toggle {
+    background: #6c757d;
+}
+
+.switch-toggle input {
+    position: absolute;
+    opacity: 0;
+}
+
+.switch-toggle-elementWidth {
+    width:150px;
+}
+
+.switch-toggle input + label {
+    padding: 7px;
+    color: #000;
+    cursor: pointer;
+}
+
+.switch-toggle input:checked + label {
+    background: #fff;
+}
+
+.DisplayOption {
+    color: #fff;
+}

@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home page";
+    var roleList = ViewBag.Roles ?? "Guest";
+    var message = String.Join("\n", roleList);
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>You are recognized as a @message</p>
+</div>
+

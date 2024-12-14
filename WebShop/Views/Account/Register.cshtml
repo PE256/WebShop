@@ -1,0 +1,40 @@
+﻿@using WebShop.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model UserFormModel
+@{
+    ViewData["Title"] = "RegisterView";
+    Layout = "_Authorization";
+    var errors = String.Join("\n", ViewData.ModelState.SelectMany(p => p.Value.Errors?.Select(i => i.ErrorMessage)));
+    string? controllerName = "Account";
+    string? controllerAction = "Register";
+    string? redirectionLink = "Login";
+    string? title = "Register";
+}
+
+<div>
+<form method="post" asp-antiforgery="true" asp-controller=@controllerName asp-action=@controllerAction>
+    <div style="border-top-left-radius:10px; border-top-right-radius:10px; height:35px;" class="switch-toggle">
+        <input type="radio" id="Option1" asp-for="Role" value="Customer" checked />
+        <label style="padding-left:10px; width:50%; border-top-left-radius:10px; float:left" for="Option1"> I'm a customer</label>
+        <input type="radio" id="Option2" asp-for="Role" value="Vendor" />
+        <label style="padding-left:10px; width:50%; border-top-right-radius:10px; float:right" for="Option2"> I'm a vendor</label>
+    </div>
+    <h2 style="padding-left:10px;">@title</h2>
+    <p>
+        <label style="padding-left:10px;" asp-for="Name"></label><br />
+        <input style="margin:1px 1px 1px 10px;" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </p>
+    <p>
+        <label style="padding-left:10px;" asp-for="Password"></label><br />
+        <input style="margin:1px 1px 1px 10px;" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </p>
+    <input style="margin-left:10px;" type="submit" value="Send" />
+</form>
+<div>
+<p style="padding-left:10px; white-space: pre-line">@errors</p>
+
+<p style="padding-left:10px;">
+    If you have an account, please <a asp-controller=@controllerName asp-action=@redirectionLink>log in</a>.
+</p>

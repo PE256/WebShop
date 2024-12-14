@@ -1,0 +1,35 @@
+﻿@using WebShop.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model UserFormModel
+@{
+    ViewData["Title"] = "LoginView";
+    Layout = "_Authorization";
+    var errors = String.Join("\n", ViewData.ModelState.SelectMany(p => p.Value.Errors?.Select(i => i.ErrorMessage)));
+    string? controllerName = "Account";
+    string? controllerAction = "Login";
+    string? redirectionLink = "Register";
+    string? title = "Login";
+}
+
+<div>
+    <form method="post" asp-antiforgery="true" asp-controller=@controllerName asp-action=@controllerAction>
+        <input type="hidden" asp-for="Role" value="OnLogin" />
+        <h2 style="padding-left:10px;">@title</h2>
+        <p>
+            <label style="padding-left:10px;" asp-for="Name"></label><br />
+            <input style="margin:1px 1px 1px 10px;" asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </p>
+        <p>
+            <label style="padding-left:10px;" asp-for="Password"></label><br />
+            <input style="margin:1px 1px 1px 10px;" asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </p>
+        <input style="margin-left:10px;" type="submit" value="Send" />
+    </form>
+<div>
+<p style="padding-left:10px; white-space: pre-line">@errors</p>
+
+<p style="padding-left:10px;">
+    If you don't have an account, <a asp-controller=@controllerName asp-action=@redirectionLink>register</a>.
+</p>

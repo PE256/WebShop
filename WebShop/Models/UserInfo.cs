@@ -19,18 +19,4 @@ namespace WebShop.Models
             Coins = coins;
         }
     }
-
-    //public class User
-    //{
-    //    public int Id { get; set; }
-    //    [Required]
-    //    [StringLength(50)]
-    //    [Display(Name = "Name")]
-    //    public string Name { get; set; }
-    //    [Required]
-    //    [StringLength(50)]
-    //    [Display(Name = "Password")]
-    //    [DataType(DataType.Password)]
-    //    public string Password { get; set; }
-    //}
 }

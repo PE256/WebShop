@@ -10,11 +10,15 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using WebShop.Services;
+using WebShop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 40))));
+
+builder.Services.AddDbContext<DataContext>(
     options => options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 40))));
 
 //builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppIdentityDbContext>();
@@ -39,6 +43,9 @@ builder.Services.AddDbContext<AppIdentityDbContext>(
     options => options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 40))));
 //builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 //    .AddEntityFrameworkStores<AppIdentityDbContext>();
+
+builder.Services.AddScoped<IDocumentService, DocumentService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddTransient<IUserService, IdentityUserService>();
 
